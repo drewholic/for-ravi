@@ -1,1 +1,23 @@
-
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>For Ravi</title>
+<style>
+body{margin:0;font-family:Georgia,serif;background:linear-gradient(#0f1117,#1a1d29);color:#f5f5f5;text-align:center}
+section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px}
+.hidden{display:none}
+img{width:min(900px,90vw);aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin:10px 0}
+button{padding:12px 24px;border-radius:999px;border:none;cursor:pointer}
+</style></head><body>
+<section id="p1"><h1>For Ravi.</h1><h2>On the days you forget.</h2><button onclick="nextPage('p2')">open</button></section>
+<section id="p2" class="hidden"><h2>hey ravi.</h2><p>before anything else, i need you to know something.</p><button onclick="nextPage('p3')">continue</button></section>
+<section id="p3" class="hidden"><p>i know you don't always see yourself the way i see you.</p><p>and maybe that's why i'm making this.</p><p>because some things deserve to be said properly.</p><button onclick="nextPage('p4')">continue</button></section>
+<section id="p4" class="hidden"><h2>things i wish you knew</h2><p>You're one of the hardest-working people I've ever met.</p><p>You care more than you let people see.</p><p>You carry more than you tell people.</p><p>Somehow, you still choose kindness.</p><button onclick="nextPage('p5')">continue</button></section>
+<section id="p5" class="hidden"><h2>about you</h2><p>maybe you don't give yourself enough credit.</p><p>but i do.</p><button onclick="nextPage('p6')">continue</button></section>
+<section id="p6" class="hidden"><h2>I'd say yes. Every single time.</h2><button onclick="nextPage('p7')">continue</button></section>
+<section id="p7" class="hidden"><h2>memories</h2><img src="9066977841_87333876992724_1779554138246.png"><img src="Roblox_21_05_2026_21_38_28.png"><img src="9066977841_113833408422260_1780085220419.png"><img src="IMG_4407.png"><button onclick="nextPage('p8')">continue</button></section>
+<section id="p8" class="hidden"><h2>bali</h2><p>We still have places to go. We still have sunsets to watch. And one day... Bali.</p><button onclick="nextPage('p9')">continue</button></section>
+<section id="p9" class="hidden"><h2>your letter goes here</h2><p>Replace this section with your own letter.</p><button onclick="nextPage('p10')">continue</button></section>
+<section id="p10" class="hidden"><h2>Ravi.</h2><p>You have someone.</p><p>Someone who cares about you.</p><p>Someone who's grateful that you exist.</p><p>If one day you feel like you don't have anyone to talk to, come to me.</p><h3>I'll always leave a light on for you.</h3><p>see you in Bali, Pii. 🌴🤍</p><a style="color:white" href="https://youtu.be/D89cIekJNH8?si=iX4ZLBdXOgIxHKv1" target="_blank">♫ Senja Sudut Kota</a></section>
+<script>
+function nextPage(id){document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');window.scrollTo(0,0);}
+</script></body></html>
