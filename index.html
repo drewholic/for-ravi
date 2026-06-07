@@ -1,23 +1,931 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>For Ravi</title>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>On The Days You Forget</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
 <style>
-body{margin:0;font-family:Georgia,serif;background:linear-gradient(#0f1117,#1a1d29);color:#f5f5f5;text-align:center}
-section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px}
-.hidden{display:none}
-img{width:min(900px,90vw);aspect-ratio:16/9;object-fit:cover;border-radius:16px;margin:10px 0}
-button{padding:12px 24px;border-radius:999px;border:none;cursor:pointer}
-</style></head><body>
-<section id="p1"><h1>For Ravi.</h1><h2>On the days you forget.</h2><button onclick="nextPage('p2')">open</button></section>
-<section id="p2" class="hidden"><h2>hey ravi.</h2><p>before anything else, i need you to know something.</p><button onclick="nextPage('p3')">continue</button></section>
-<section id="p3" class="hidden"><p>i know you don't always see yourself the way i see you.</p><p>and maybe that's why i'm making this.</p><p>because some things deserve to be said properly.</p><button onclick="nextPage('p4')">continue</button></section>
-<section id="p4" class="hidden"><h2>things i wish you knew</h2><p>You're one of the hardest-working people I've ever met.</p><p>You care more than you let people see.</p><p>You carry more than you tell people.</p><p>Somehow, you still choose kindness.</p><button onclick="nextPage('p5')">continue</button></section>
-<section id="p5" class="hidden"><h2>about you</h2><p>maybe you don't give yourself enough credit.</p><p>but i do.</p><button onclick="nextPage('p6')">continue</button></section>
-<section id="p6" class="hidden"><h2>I'd say yes. Every single time.</h2><button onclick="nextPage('p7')">continue</button></section>
-<section id="p7" class="hidden"><h2>memories</h2><img src="9066977841_87333876992724_1779554138246.png"><img src="Roblox_21_05_2026_21_38_28.png"><img src="9066977841_113833408422260_1780085220419.png"><img src="IMG_4407.png"><button onclick="nextPage('p8')">continue</button></section>
-<section id="p8" class="hidden"><h2>bali</h2><p>We still have places to go. We still have sunsets to watch. And one day... Bali.</p><button onclick="nextPage('p9')">continue</button></section>
-<section id="p9" class="hidden"><h2>your letter goes here</h2><p>Replace this section with your own letter.</p><button onclick="nextPage('p10')">continue</button></section>
-<section id="p10" class="hidden"><h2>Ravi.</h2><p>You have someone.</p><p>Someone who cares about you.</p><p>Someone who's grateful that you exist.</p><p>If one day you feel like you don't have anyone to talk to, come to me.</p><h3>I'll always leave a light on for you.</h3><p>see you in Bali, Pii. 🌴🤍</p><a style="color:white" href="https://youtu.be/D89cIekJNH8?si=iX4ZLBdXOgIxHKv1" target="_blank">♫ Senja Sudut Kota</a></section>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Inter',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#0B0F19;
+overflow:hidden;
+color:white;
+}
+
+/* ========================= */
+/* BACKGROUND */
+/* ========================= */
+
+.background{
+position:fixed;
+width:100%;
+height:100%;
+top:0;
+left:0;
+z-index:-3;
+
+background:
+linear-gradient(
+180deg,
+#0B0F19 0%,
+#141824 45%,
+#1C2230 100%
+);
+}
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+z-index:-2;
+overflow:hidden;
+}
+
+.star{
+position:absolute;
+width:2px;
+height:2px;
+background:white;
+border-radius:50%;
+animation:twinkle 4s infinite ease-in-out;
+}
+
+@keyframes twinkle{
+
+0%{
+opacity:.2;
+}
+
+50%{
+opacity:1;
+}
+
+100%{
+opacity:.2;
+}
+
+}
+
+.glow{
+position:fixed;
+bottom:-300px;
+left:50%;
+transform:translateX(-50%);
+width:700px;
+height:700px;
+background:#fff4d6;
+opacity:.08;
+filter:blur(180px);
+z-index:-1;
+}
+
+/* ========================= */
+/* PAGE */
+/* ========================= */
+
+.page{
+width:100%;
+height:100vh;
+
+display:none;
+
+flex-direction:column;
+justify-content:center;
+align-items:center;
+
+padding:40px;
+text-align:center;
+}
+
+.page.active{
+display:flex;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* ========================= */
+/* TEXT */
+/* ========================= */
+
+.title{
+font-size:4rem;
+font-weight:300;
+letter-spacing:2px;
+margin-bottom:20px;
+}
+
+.subtitle{
+font-size:1.2rem;
+opacity:.75;
+}
+
+.text{
+max-width:800px;
+font-size:1.4rem;
+line-height:2.2rem;
+font-weight:300;
+}
+
+.big-text{
+font-size:3rem;
+font-weight:300;
+line-height:4rem;
+}
+
+/* ========================= */
+/* BUTTON */
+/* ========================= */
+
+.btn{
+margin-top:40px;
+
+padding:14px 34px;
+
+border:none;
+border-radius:999px;
+
+background:white;
+color:#111;
+
+cursor:pointer;
+
+font-size:1rem;
+font-weight:500;
+
+transition:.3s;
+}
+
+.btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 10px 30px rgba(255,255,255,.15);
+
+}
+
+/* ========================= */
+/* CARD */
+/* ========================= */
+
+.card{
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(10px);
+
+padding:30px;
+
+border-radius:24px;
+
+width:min(90%,700px);
+
+margin:20px auto;
+
+animation:fadeIn .8s ease;
+}
+
+/* ========================= */
+/* GALLERY */
+/* ========================= */
+
+.gallery{
+position:relative;
+width:min(1000px,90vw);
+}
+
+.gallery img{
+
+width:100%;
+height:70vh;
+
+object-fit:cover;
+
+border-radius:24px;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.5);
+}
+
+/* ========================= */
+/* MUSIC BUTTON */
+/* ========================= */
+
+.music-btn{
+
+position:fixed;
+
+bottom:25px;
+right:25px;
+
+width:60px;
+height:60px;
+
+border-radius:50%;
+
+border:none;
+
+background:rgba(255,255,255,.1);
+
+backdrop-filter:blur(10px);
+
+color:white;
+
+cursor:pointer;
+
+font-size:1.2rem;
+
+z-index:999;
+}
+
+/* ========================= */
+/* LIGHT ENDING */
+/* ========================= */
+
+.light{
+
+width:12px;
+height:12px;
+
+border-radius:50%;
+
+background:#fff4d6;
+
+box-shadow:
+0 0 20px #fff4d6,
+0 0 50px #fff4d6,
+0 0 100px #fff4d6;
+
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+0%{
+transform:scale(.8);
+}
+
+50%{
+transform:scale(1.3);
+}
+
+100%{
+transform:scale(.8);
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+
+<div class="stars" id="stars"></div>
+
+<div class="glow"></div>
+
+<audio id="music">
+<source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3">
+</audio>
+
+<button class="music-btn" onclick="toggleMusic()">
+♫
+</button>
+
+<!-- PAGE 1 -->
+
+<section class="page active" id="page1">
+
+<h1 class="title">
+For Ravi.
+</h1>
+
+<p class="subtitle">
+On the days you forget.
+</p>
+
+<button class="btn" onclick="nextPage(2)">
+open
+</button>
+
+</section>
+
+<!-- PAGE 2 -->
+
+<section class="page" id="page2">
+
+<div class="text">
+
+<p>hey ravi.</p>
+
+<br>
+
+<p>before anything else,</p>
+
+<br>
+
+<p>i need you to know something.</p>
+
+</div>
+
+<button class="btn" onclick="nextPage(3)">
+tell me
+</button>
+
+</section>
+<!-- PAGE 3 -->
+
+<section class="page" id="page3">
+
+<div class="text">
+
+<p>
+i know you don't always see yourself
+</p>
+
+<br>
+
+<p>
+the way i see you.
+</p>
+
+<br><br>
+
+<p>
+and maybe that's why i'm making this.
+</p>
+
+<br>
+
+<p>
+because some things deserve to be said properly.
+</p>
+
+</div>
+
+<button class="btn" onclick="nextPage(4)">
+continue
+</button>
+
+</section>
+
+<!-- PAGE 4 -->
+
+<section class="page" id="page4">
+
+<h1 class="title">
+things i wish you knew
+</h1>
+
+<div class="card">
+🤍<br><br>
+You're one of the hardest-working people I've ever met.
+</div>
+
+<div class="card">
+🤍<br><br>
+You care more than you let people see.
+</div>
+
+<div class="card">
+🤍<br><br>
+You carry more than you tell people.
+</div>
+
+<div class="card">
+🤍<br><br>
+Somehow, you still choose kindness.
+</div>
+
+<div class="card">
+🤍<br><br>
+And that's one of my favorite things about you.
+</div>
+
+<button class="btn" onclick="nextPage(5)">
+continue
+</button>
+
+</section>
+
+<!-- PAGE 5 -->
+
+<section class="page" id="page5">
+
+<h1 class="title">
+about love
+</h1>
+
+<div class="text">
+
+<p>
+maybe you don't give yourself enough credit.
+</p>
+
+<br>
+
+<p>
+maybe you don't always see yourself
+the way other people do.
+</p>
+
+<br>
+
+<p>
+but if you could see yourself
+through my eyes for a moment...
+</p>
+
+<br>
+
+<p>
+i think you'd understand.
+</p>
+
+<br>
+
+<p>
+why you're so easy to care about.
+</p>
+
+<br>
+
+<p>
+why you're so easy to miss.
+</p>
+
+<br>
+
+<p>
+and why you're so easy to love.
+</p>
+
+</div>
+
+<button class="btn" onclick="nextPage(6)">
+continue
+</button>
+
+</section>
+
+<!-- PAGE 6 -->
+
+<section class="page" id="page6">
+
+<div class="big-text">
+
+Because if someone asked me
+
+<br><br>
+
+whether Ravi deserves to be loved...
+
+<br><br><br>
+
+I'd say yes.
+
+<br><br>
+
+Every single time.
+
+</div>
+
+<button class="btn" onclick="nextPage(7)">
+continue
+</button>
+
+</section>
+
+<!-- PAGE 7 -->
+
+<section class="page" id="page7">
+
+<h1 class="title">
+memories
+</h1>
+
+<div class="gallery">
+
+<img
+id="galleryImage"
+src="9066977841_87333876992724_1779554138246.png"
+>
+
+</div>
+
+<br>
+
+<div>
+
+<button class="btn" onclick="prevImage()">
+←
+</button>
+
+<button class="btn" onclick="nextImage()">
+→
+</button>
+
+</div>
+
+<br>
+
+<p class="subtitle">
+a few moments i never want to forget.
+</p>
+
+<br>
+
+<button class="btn" onclick="nextPage(8)">
+continue
+</button>
+
+</section>
+
+<!-- PAGE 8 -->
+
+<section class="page" id="page8">
+
+<h1 class="title">
+thank you
+</h1>
+
+<div class="text">
+
+<p>
+Thank you for every conversation.
+</p>
+
+<br>
+
+<p>
+Thank you for every late-night chat.
+</p>
+
+<br>
+
+<p>
+Thank you for becoming part of my days.
+</p>
+
+<br>
+
+<p>
+Thank you for staying.
+</p>
+
+<br>
+
+<p>
+Thank you for making ordinary days feel lighter.
+</p>
+
+</div>
+
+<button class="btn" onclick="nextPage(9)">
+continue
+</button>
+
+</section>
+<!-- PAGE 9 -->
+
+<section class="page" id="page9">
+
+<h1 class="title">
+bali
+</h1>
+
+<div class="text">
+
+<p>
+📍 Here
+</p>
+
+<br>
+
+<p>
+────────────
+</p>
+
+<br>
+
+<p>
+📍 Bali
+</p>
+
+<br><br>
+
+<p>
+We still have places to go.
+</p>
+
+<br>
+
+<p>
+We still have sunsets to watch.
+</p>
+
+<br>
+
+<p>
+I'll learn all the beautiful places first.
+</p>
+
+<br>
+
+<p>
+So when we finally get there,
+I can show them to you.
+</p>
+
+<br>
+
+<p>
+And maybe...
+</p>
+
+<br>
+
+<p>
+I'll even accompany you clubbing.
+</p>
+
+<br>
+
+<p>
+Deal?
+</p>
+
+</div>
+
+<button class="btn" onclick="nextPage(10)">
+continue
+</button>
+
+</section>
+
+<!-- PAGE 10 -->
+
+<section class="page" id="page10">
+
+<h1 class="title">
+a letter for you
+</h1>
+
+<div class="card">
+
+<p>
+
+PASTE SURAT BUAT RAVI DI SINI.
+
+Ganti seluruh tulisan ini dengan suratmu sendiri.
+
+Kamu bisa bikin panjang beberapa paragraf.
+
+</p>
+
+</div>
+
+<button class="btn" onclick="nextPage(11)">
+continue
+</button>
+
+</section>
+
+<!-- PAGE 11 -->
+
+<section class="page" id="page11">
+
+<div class="text">
+
+<p>
+Ravi.
+</p>
+
+<br><br>
+
+<p>
+You are loved.
+</p>
+
+<br>
+
+<p>
+More than you realize.
+</p>
+
+<br>
+
+<p>
+More than you believe.
+</p>
+
+<br>
+
+<p>
+And definitely more than you give yourself credit for.
+</p>
+
+<br><br>
+
+<p>
+You don't have to earn it.
+</p>
+
+<br>
+
+<p>
+You don't have to prove it.
+</p>
+
+<br>
+
+<p>
+You already deserve it.
+</p>
+
+<br><br><br>
+
+<div class="light"></div>
+
+<br><br><br>
+
+<p style="font-size:2rem">
+
+I'll always leave a light on for you.
+
+</p>
+
+<br><br>
+
+<p>
+
+from someone who's really happy you exist.
+
+</p>
+
+<br>
+
+<p>
+
+see you in Bali, Pii. 🌴🤍
+
+</p>
+
+</div>
+
+</section>
+
 <script>
-function nextPage(id){document.querySelectorAll('section').forEach(s=>s.classList.add('hidden'));document.getElementById(id).classList.remove('hidden');window.scrollTo(0,0);}
-</script></body></html>
+
+/* ========================= */
+/* PAGE NAVIGATION */
+/* ========================= */
+
+function nextPage(page){
+
+document
+.querySelectorAll(".page")
+.forEach(section=>{
+
+section.classList.remove("active");
+
+});
+
+document
+.getElementById("page"+page)
+.classList.add("active");
+
+}
+
+/* ========================= */
+/* GALLERY */
+/* ========================= */
+
+const images=[
+
+"9066977841_87333876992724_1779554138246.png",
+
+"Roblox_21_05_2026_21_38_28.png",
+
+"9066977841_113833408422260_1780085220419.png",
+
+"IMG_4407.png"
+
+];
+
+let currentImage=0;
+
+function nextImage(){
+
+currentImage++;
+
+if(currentImage>=images.length){
+
+currentImage=0;
+
+}
+
+document.getElementById("galleryImage").src=
+images[currentImage];
+
+}
+
+function prevImage(){
+
+currentImage--;
+
+if(currentImage<0){
+
+currentImage=images.length-1;
+
+}
+
+document.getElementById("galleryImage").src=
+images[currentImage];
+
+}
+
+/* ========================= */
+/* MUSIC */
+/* ========================= */
+
+function toggleMusic(){
+
+const music=
+document.getElementById("music");
+
+if(music.paused){
+
+music.play();
+
+}else{
+
+music.pause();
+
+}
+
+}
+
+/* ========================= */
+/* STARS */
+/* ========================= */
+
+const stars=
+document.getElementById("stars");
+
+for(let i=0;i<120;i++){
+
+const star=
+document.createElement("div");
+
+star.classList.add("star");
+
+star.style.left=
+Math.random()*100+"%";
+
+star.style.top=
+Math.random()*100+"%";
+
+star.style.animationDelay=
+Math.random()*5+"s";
+
+stars.appendChild(star);
+
+}
+
+</script>
+
+</body>
+</html>
